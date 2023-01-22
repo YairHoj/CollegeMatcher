@@ -25,5 +25,5 @@ const fetch = require("node-fetch");
 })();
 
 app.get("/api", (req, res) => {
-  res.send(myJSON);
+  res.send(myJSON.state);
 });
