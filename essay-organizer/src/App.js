@@ -20,7 +20,6 @@ function App() {
             path="/college-list"
             element={
               <>
-                <h1> Edit</h1>
                 <CollegeList />
               </>
             }

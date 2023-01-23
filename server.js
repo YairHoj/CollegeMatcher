@@ -1,6 +1,14 @@
 const express = require("express");
 const app = express();
 
+const cors = require("cors");
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions)); // Use this after the variable declaration
 app.listen(5001, () => {
   console.log(`Server listening on 5001`);
 });
@@ -25,7 +33,9 @@ let nameApi = [];
   // console.log(JSON.stringify(data.results, null, 2));
   myJSON = JSON.stringify(data.results);
   for (let i = 0; i < 3202; i++) {
-    nameApi.push(data.results[i].name);
+    let obj = { id: i + 1, name: data.results[i].name };
+    nameApi.push(obj);
+    // nameApi.push(data.results[i].name);
   }
 })();
 
