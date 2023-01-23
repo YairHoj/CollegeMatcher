@@ -1,5 +1,6 @@
 import "./App.css";
 import Nav from "./Components/Nav";
+import CollegeList from "./Components/CollegeList";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,10 +17,11 @@ function App() {
             }
           />
           <Route
-            path="/edit"
+            path="/college-list"
             element={
               <>
-                <h1>Edit</h1>
+                <h1> Edit</h1>
+                <CollegeList />
               </>
             }
           />
