@@ -9,6 +9,8 @@ let myJSON;
 
 const fetch = require("node-fetch");
 let data;
+let nameApi = [];
+
 (async () => {
   const response = await fetch(
     "https://parseapi.back4app.com/classes/Usuniversitieslist_University?limit=9999&order=name",
@@ -22,18 +24,13 @@ let data;
   data = await response.json(); // Here you have the data that you need
   // console.log(JSON.stringify(data.results, null, 2));
   myJSON = JSON.stringify(data.results);
+  for (let i = 0; i < 3202; i++) {
+    nameApi.push(data.results[i].name);
+  }
 })();
 
-let nameArr = [];
-namePull(data);
-function namePull(data) {
-  for (let o in data) {
-    nameArr.push(data[o]);
-    console.log(o);
-  }
-  console.log(nameArr);
-}
+// 3202 colleges
 
 app.get("/api", (req, res) => {
-  res.send(myJSON);
+  res.send(nameApi);
 });
