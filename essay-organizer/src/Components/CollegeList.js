@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useRef } from "react";
+
 import College from "./College";
 import Axios from "axios";
 
 let collegesArray = [];
+let myCollegesList = [];
+
 let i = 0;
 function CollegeList() {
+  const ref = useRef(null);
+
   const [text, setText] = useState([]);
   const getPosts = async () => {
     try {
@@ -12,7 +18,7 @@ function CollegeList() {
         method: "GET",
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       for (let q = 0; i < 3202; i++) {
         collegesArray.push(data[i].name);
       }
@@ -47,6 +53,22 @@ function CollegeList() {
     setFilteredList(updatedList);
   };
 
+  // // Add college button
+  // const addCollege = (college) => {
+  //   console.log("executed.");
+  //   console.log(college);
+  //   myCollegesList.push(college)
+  // };
+
+  // Custom College Submit
+  const [inputDATA, setInputData] = useState(" ");
+
+  const addElementToArray = () => {
+    const textInput = ref.current.value;
+    myCollegesList.push(textInput);
+
+    console.log(myCollegesList);
+  };
   return (
     <div>
       <div className="search-header">
@@ -69,13 +91,24 @@ function CollegeList() {
               <button> Add college </button>
             </li>
           ))}
-          {/* <div id="new-college">
-            <p>Dont see your college? Add a custom college here:</p>
-            <form>
-              {" "}
-              <input id="custom-college">Add college</input>
-            </form> */}
-          {/* </div> */}
+          <div>
+            <div>
+              {/* <label htmlFor="new-college">
+                Don't see your college? Add your own custom college here:{" "}
+              </label>
+              <input type="text" id="custom-college" name="CustomCollege" />{" "}
+              <button> Add college </button> */}
+              <p> Don't see your college? Add your own custom college here: </p>
+
+              <input
+                placeholder="Enter College"
+                onChange={(item) => setInputData(item)}
+                ref={ref}
+              />
+
+              <button onClick={addElementToArray}>Add College</button>
+            </div>
+          </div>
         </ol>
       </div>
     </div>
