@@ -50,7 +50,7 @@ h2 {
   align-items: center;
 }
 
-.Login {
+#signOut {
   font-size: 20px;
   font-weight: 500;
   display: flex;
@@ -63,4 +63,5 @@ h2 {
   height: 50px;
   border-radius: 50px;
   color: #0099ff;
+  cursor: pointer;
 }

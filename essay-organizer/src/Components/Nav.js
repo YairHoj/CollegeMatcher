@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import logo from "../logo.png";
+import GoogleSignIn from "./GoogleSignIn";
 
 function Nav() {
   return (
@@ -13,11 +14,7 @@ function Nav() {
         <h2 className="home">Home</h2>
         <h2 className="browsecolleges">Browse Colleges</h2>
         <h2 className="essaymanager">Essay Manager</h2>
-        <div className="buttondiv">
-          <a href="-" className="Login">
-            Log in
-          </a>
-        </div>
+        <GoogleSignIn />
       </div>
     </div>
   );
