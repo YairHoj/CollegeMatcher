@@ -1,6 +1,7 @@
 import "./App.css";
 import Nav from "./Components/Nav";
 import CollegeList from "./Components/CollegeList";
+import MyColleges from "./Components/MyColleges";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,14 @@ function App() {
             element={
               <>
                 <CollegeList />
+              </>
+            }
+          />
+          <Route
+            path="/my-colleges"
+            element={
+              <>
+                <MyColleges />
               </>
             }
           />

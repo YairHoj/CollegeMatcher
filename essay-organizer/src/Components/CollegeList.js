@@ -6,8 +6,10 @@ import Axios from "axios";
 
 let collegesArray = [];
 let myCollegesList = [];
+let firstExec = true;
 
 let i = 0;
+
 function CollegeList() {
   const ref = useRef(null);
 
@@ -53,21 +55,22 @@ function CollegeList() {
     setFilteredList(updatedList);
   };
 
-  // // Add college button
-  // const addCollege = (college) => {
-  //   console.log("executed.");
-  //   console.log(college);
-  //   myCollegesList.push(college)
-  // };
+  // Add college button
 
   // Custom College Submit
+
   const [inputDATA, setInputData] = useState(" ");
 
   const addElementToArray = () => {
     const textInput = ref.current.value;
     myCollegesList.push(textInput);
-
     console.log(myCollegesList);
+  };
+
+  const onClick = (college) => {
+    myCollegesList.push(college.item);
+    console.log(myCollegesList);
+    console.log(college);
   };
   return (
     <div>
@@ -78,6 +81,23 @@ function CollegeList() {
 
       <div id="item-list">
         <ol>
+          <div>
+            <div>
+              {/* <label htmlFor="new-college">
+                Don't see your college? Add your own custom college here:{" "}
+              </label>
+              <input type="text" id="custom-college" name="CustomCollege" />{" "}
+              <button> Add college </button> */}
+              <p> Don't see your college? Add your own custom college here: </p>
+              <input
+                placeholder="Enter College"
+                onChange={(item) => setInputData(item)}
+                ref={ref}
+              />
+              <button onClick={addElementToArray}>Add College</button>
+            </div>
+            <br />
+          </div>
           {/* {text.map((item, index) => {
             return (
               <div key={index}>
@@ -87,28 +107,18 @@ function CollegeList() {
           })} */}
           {filteredList.map((item, index) => (
             <li key={index}>
-              {item}
-              <button> Add college </button>
+              {item}{" "}
+              <button
+                id={item}
+                onClick={() => {
+                  onClick({ item });
+                }}
+              >
+                {" "}
+                Add college
+              </button>
             </li>
           ))}
-          <div>
-            <div>
-              {/* <label htmlFor="new-college">
-                Don't see your college? Add your own custom college here:{" "}
-              </label>
-              <input type="text" id="custom-college" name="CustomCollege" />{" "}
-              <button> Add college </button> */}
-              <p> Don't see your college? Add your own custom college here: </p>
-
-              <input
-                placeholder="Enter College"
-                onChange={(item) => setInputData(item)}
-                ref={ref}
-              />
-
-              <button onClick={addElementToArray}>Add College</button>
-            </div>
-          </div>
         </ol>
       </div>
     </div>
