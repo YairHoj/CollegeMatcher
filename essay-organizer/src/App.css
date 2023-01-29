@@ -1,3 +1,8 @@
+html {
+  background-color: #0099ff;
+}
+
+/* CSS for <Nav/> component*/
 .flex-container {
   font-family: "Poppins", sans-serif;
   padding-left: 15vw;
@@ -17,6 +22,10 @@
   position: relative;
 }
 
+.logoroute {
+  text-decoration: none;
+}
+
 .logo {
   width: 50px;
   height: 50px;
@@ -30,13 +39,18 @@
   margin-left: 60px;
   font-weight: 600;
   display: inline-block;
+  text-decoration: none;
+  color: white;
 }
 
-h2 {
+.navtext {
   font-size: 25px;
-  text-shadow: 0 4px 4px rgb(0 0 0 / 0.25);
+  color: white;
+  text-shadow: 0 4px 4px rgb(0 0 0 / 0.15);
   font-weight: 600;
+  text-decoration: none;
   display: inline;
+  margin-top: 5px;
 }
 
 .linkdiv {
@@ -63,4 +77,183 @@ h2 {
   height: 50px;
   border-radius: 50px;
   color: #0099ff;
+}
+
+.burgerbutton {
+  background-color: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burgerimage {
+  width: 35px;
+  height: 35px;
+}
+
+/* CSS for <Heading/> component*/
+.container {
+  padding-left: 15vw;
+  padding-right: 15vw;
+  position: static;
+  z-index: 29;
+}
+.headingdiv {
+  display: flex;
+  justify-content: space-between;
+}
+.mainheading {
+  font-size: 70px;
+  margin-top: 50px;
+  width: 800px;
+  color: white;
+  text-shadow: 0 4px 4px rgb(0 0 0 / 0.15);
+}
+
+.image {
+  margin-top: 70px;
+  width: 550px;
+  height: 365px;
+}
+
+.burgerbutton {
+  display: none;
+}
+
+@media only screen and (max-width: 1608px) {
+  .containter {
+    display: flex;
+    justify-content: center;
+  }
+  .headingdiv {
+    display: block;
+  }
+  .mainheading {
+    width: auto;
+    text-align: center;
+  }
+  .image {
+    margin-top: 0px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 1328px) {
+  .burgerbutton {
+    display: flex;
+  }
+  .navtext {
+    display: none;
+  }
+  .linkdiv {
+    column-gap: 10px;
+  }
+}
+@media only screen and (max-width: 902px) {
+  .container {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+  .flex-container {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+  .image {
+    width: auto;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 789px) {
+  .mainheading {
+    font-size: 50px;
+  }
+}
+
+@media only screen and (max-width: 589px) {
+  .mainheading {
+    font-size: 40px;
+  }
+  .image {
+    display: none;
+  }
+}
+
+.menu2 {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.305);
+}
+
+.menuitems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 150px;
+}
+
+.navtext2 {
+  font-size: 50px;
+  color: white;
+  text-shadow: 0 4px 4px rgb(0 0 0 / 0.15);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline;
+  margin-top: 5px;
+}
+
+#text1 {
+  margin-top: -400px;
+}
+
+.login2 {
+  font-size: 35px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 90px;
+  width: 200px;
+  border-radius: 50px;
+  color: #0099ff;
+}
+
+#x {
+  display: flex;
+  justify-content: flex-end;
+  width: 35px;
+  height: 35px;
+}
+#xbutton {
+  background-color: transparent;
+  border: none;
+}
+
+#text1 {
+  margin-top: 100px;
+}
+
+#page {
+  display: block;
+}
+
+#wave1 {
+  width: 100vw;
+  margin-top: 25px;
+  z-index: -3;
+}
+
+#menu2 {
+  z-index: 30;
 }
