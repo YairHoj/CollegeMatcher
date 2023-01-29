@@ -1,6 +1,7 @@
 import "./App.css";
-import Nav from "./Components/Nav";
+import EssayManager from "./Components/EssayManager";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Components/Home";
 
 function App() {
   return (
@@ -11,15 +12,15 @@ function App() {
             path="/"
             element={
               <>
-                <Nav />
+                <Home />
               </>
             }
           />
           <Route
-            path="/edit"
+            path="/essayManager"
             element={
               <>
-                <h1>Edit</h1>
+                <EssayManager />
               </>
             }
           />

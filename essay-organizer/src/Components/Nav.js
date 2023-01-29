@@ -13,7 +13,9 @@ function Nav() {
       <div className="linkdiv">
         <h2 className="home">Home</h2>
         <h2 className="browsecolleges">Browse Colleges</h2>
-        <h2 className="essaymanager">Essay Manager</h2>
+        <a href="/essayManager">
+          <h2 className="essaymanager">Essay Manager</h2>
+        </a>
         <GoogleSignIn />
       </div>
     </div>
