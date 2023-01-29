@@ -1,7 +1,10 @@
 import "./App.css";
 import EssayManager from "./Components/EssayManager";
+import Menu from "./Components/Menu";
+import Nav from "./Components/Nav";
+import Heading from "./Components/Heading";
+import Features from "./Components/Features";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Components/Home";
 
 function App() {
   return (
@@ -12,14 +15,28 @@ function App() {
             path="/"
             element={
               <>
-                <Home />
+                <Menu />
+                <div id="page">
+                  <Nav />
+                  <Heading />
+                  <Features />
+                </div>
               </>
             }
           />
           <Route
-            path="/essayManager"
+            path="/browse"
             element={
               <>
+                <Nav />
+              </>
+            }
+          />
+          <Route
+            path="/essaymanager"
+            element={
+              <>
+                <Nav />
                 <EssayManager />
               </>
             }
