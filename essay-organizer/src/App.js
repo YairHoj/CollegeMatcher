@@ -1,4 +1,5 @@
 import "./App.css";
+import EssayManager from "./Components/EssayManager";
 import Menu from "./Components/Menu";
 import Nav from "./Components/Nav";
 import Heading from "./Components/Heading";
@@ -36,14 +37,7 @@ function App() {
             element={
               <>
                 <Nav />
-              </>
-            }
-          />
-          <Route
-            path="/edit"
-            element={
-              <>
-                <h1>Edit</h1>
+                <EssayManager />
               </>
             }
           />

@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import logo from "../logo.png";
+import GoogleSignIn from "./GoogleSignIn";
 import burger from "../Hamburger_icon.svg.png";
 
 function Nav() {
@@ -34,9 +35,7 @@ function Nav() {
             Essay Manager
           </a>
           <div className="buttondiv">
-            <a href="/login" className="Login">
-              Log in
-            </a>
+            <GoogleSignIn />
           </div>
           <button className="burgerbutton" onClick={handleClick}>
             <img src={burger} className="burgerimage"></img>
