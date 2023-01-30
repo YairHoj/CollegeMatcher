@@ -38,7 +38,8 @@ function App() {
             path="/essaymanager"
             element={
               <>
-                <h1>Edit</h1>
+                <Nav />
+                <EssayManager />
               </>
             }
           />
