@@ -4,6 +4,8 @@ import Menu from "./Components/Menu";
 import Nav from "./Components/Nav";
 import Heading from "./Components/Heading";
 import Features from "./Components/Features";
+import CollegeList from "./Components/CollegeList";
+import MyColleges from "./Components/MyColleges";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -38,6 +40,22 @@ function App() {
               <>
                 <Nav />
                 <EssayManager />
+              </>
+            }
+          />
+          <Route
+            path="/college-list"
+            element={
+              <>
+                <CollegeList />
+              </>
+            }
+          />
+          <Route
+            path="/my-colleges"
+            element={
+              <>
+                <MyColleges />
               </>
             }
           />
