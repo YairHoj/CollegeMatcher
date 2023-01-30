@@ -64,14 +64,35 @@ function CollegeList() {
   const addElementToArray = () => {
     const textInput = ref.current.value;
     myCollegesList.push(textInput);
+    if (hasDuplicates(myCollegesList)) {
+      console.log("Duplicate elements found.");
+      alert("You have already added this college");
+      myCollegesList.pop();
+    } else {
+      console.log("No Duplicates found.");
+    }
+    myCollegesList.sort();
     console.log(myCollegesList);
   };
 
   const onClick = (college) => {
     myCollegesList.push(college.item);
+    if (hasDuplicates(myCollegesList)) {
+      console.log("Duplicate elements found.");
+      alert("You have already added this college");
+      myCollegesList.pop();
+    } else {
+      console.log("No Duplicates found.");
+    }
+    myCollegesList.sort();
     console.log(myCollegesList);
-    console.log(college);
   };
+
+  // Checks for duplicate colleges in college list
+  function hasDuplicates(arr) {
+    return new Set(arr).size !== arr.length;
+  }
+
   return (
     <div>
       <div className="search-header">
@@ -124,5 +145,5 @@ function CollegeList() {
     </div>
   );
 }
-
+export { myCollegesList };
 export default CollegeList;
