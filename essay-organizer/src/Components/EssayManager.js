@@ -1,84 +1,73 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
-import { db } from "../Firebase";
-import Nav from "./Nav";
 
 function EssayManager() {
-  const [text, setText] = useState("");
-  useEffect(() => {
-    const loadText = async () => {
-      let userExists = false;
-      let userText;
-      const query = await getDocs(collection(db, "essay"));
-      query.forEach((doc) => {
-        if (
-          doc.data().email == JSON.parse(sessionStorage.getItem("user")).email
-        ) {
-          userExists = true;
-          userText = doc.data().text;
-        }
-      });
-      if (userExists) {
-        setText(userText);
-      }
-    };
-    loadText();
-  }, []);
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
-  const save = async () => {
-    let userExists = false;
-    let docId;
-    const query = await getDocs(collection(db, "essay"));
-    query.forEach((doc) => {
-      if (
-        doc.data().email == JSON.parse(sessionStorage.getItem("user")).email
-      ) {
-        userExists = true;
-        docId = doc.id;
-        console.log(doc.data().text);
-      }
-    });
-    if (userExists) {
-      const docRef = doc(db, "essay", docId);
-      const data = {
-        text: text,
-        email: JSON.parse(sessionStorage.getItem("user")).email,
-      };
-      await setDoc(docRef, data);
+  function handleAdd() {
+    document.getElementById("form").hidden = false;
+  }
+  function handleChange() {
+    if (
+      document.getElementById("wordCount").checked ||
+      document.getElementById("charCount").checked
+    ) {
+      document.getElementById("countLabel").hidden = false;
+      document.getElementById("count").hidden = false;
     } else {
-      try {
-        const docRef = await addDoc(collection(db, "essay"), {
-          text: text,
-          email: JSON.parse(sessionStorage.getItem("user")).email,
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
+      document.getElementById("countLabel").hidden = true;
+      document.getElementById("count").hidden = true;
     }
-  };
+  }
   return (
     <>
-      <Nav />
-      {sessionStorage.getItem("user") === null ? (
-        <div>
-          <h1>Please Sign In</h1>
-        </div>
-      ) : (
-        <div>
-          <textarea
-            name="essay"
-            rows={30}
-            cols={50}
-            value={text}
-            onChange={handleChange}
-          ></textarea>
-          <button onClick={save}>Save</button>
-        </div>
-      )}
+      <button id="addEssay" onClick={handleAdd}>
+        Add Essay
+      </button>
+      <div id="form" hidden>
+        <h3>Add an essay</h3>
+        <form>
+          <label for="prompt">Prompt:</label>
+          <input type="text" id="prompt" name="prompt" />
+          <br />
+          <fieldset onChange={handleChange}>
+            <legend>Count Type</legend>
+            <input
+              type="radio"
+              id="wordCount"
+              name="countType"
+              value="Word Count"
+            />
+            <label for="wordCount">Word Count</label>
+            <br />
+            <input
+              type="radio"
+              id="charCount"
+              name="countType"
+              value="Character Count"
+            />
+            <label for="charCount">Character Count</label>
+            <br />
+            <input
+              type="radio"
+              id="noCount"
+              name="countType"
+              value="No Count"
+            />
+            <label for="noCount">No Count</label>
+            <br />
+          </fieldset>
+          <label for="count" id="countLabel" hidden>
+            Count:{" "}
+          </label>
+          <input type="text" id="count" name="count" hidden />
+          <br />
+          {/* <label for="college">College:</label>
+        <select id="colleges" name="colleges">
+          <option value="default" selected>
+            Choose A College
+          </option>
+        </select> */}
+          <input type="submit" value="Add" />
+        </form>
+      </div>
     </>
   );
 }
