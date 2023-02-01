@@ -1,85 +1,104 @@
 import React from "react";
+import TextEditor from "./TextEditor";
 import { useState, useEffect } from "react";
-import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
-import { db } from "../Firebase";
-import Nav from "./Nav";
-
 function EssayManager() {
-  const [text, setText] = useState("");
-  useEffect(() => {
-    const loadText = async () => {
-      let userExists = false;
-      let userText;
-      const query = await getDocs(collection(db, "essay"));
-      query.forEach((doc) => {
-        if (
-          doc.data().email == JSON.parse(sessionStorage.getItem("user")).email
-        ) {
-          userExists = true;
-          userText = doc.data().text;
-        }
-      });
-      if (userExists) {
-        setText(userText);
-      }
-    };
-    loadText();
-  }, []);
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
-  const save = async () => {
-    let userExists = false;
-    let docId;
-    const query = await getDocs(collection(db, "essay"));
-    query.forEach((doc) => {
-      if (
-        doc.data().email == JSON.parse(sessionStorage.getItem("user")).email
-      ) {
-        userExists = true;
-        docId = doc.id;
-        console.log(doc.data().text);
-      }
-    });
-    if (userExists) {
-      const docRef = doc(db, "essay", docId);
-      const data = {
-        text: text,
-        email: JSON.parse(sessionStorage.getItem("user")).email,
-      };
-      await setDoc(docRef, data);
+  const [prompt, setPrompt] = useState("");
+  const [countType, setCountType] = useState();
+  const [count, setCount] = useState("");
+  const [college, setCollege] = useState();
+  const [essays, setEssays] = useState([]);
+  useEffect(() => {}, []);
+  function handleAdd() {
+    document.getElementById("form").hidden = false;
+  }
+  function handlePrompt(e) {
+    setPrompt(e.target.value);
+  }
+  function handleCountType(e) {
+    if (
+      document.getElementById("wordCount").checked ||
+      document.getElementById("charCount").checked
+    ) {
+      document.getElementById("countLabel").hidden = false;
+      document.getElementById("count").hidden = false;
     } else {
-      try {
-        const docRef = await addDoc(collection(db, "essay"), {
-          text: text,
-          email: JSON.parse(sessionStorage.getItem("user")).email,
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
+      setCount(0);
+      document.getElementById("countLabel").hidden = true;
+      document.getElementById("count").hidden = true;
     }
-  };
+    setCountType(e.target.value);
+  }
+  function handleCount(e) {
+    setCount(e.target.value);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    setEssays(
+      essays.concat(
+        <TextEditor
+          prompt={prompt}
+          countType={countType}
+          count={count}
+          key={essays.length}
+        />
+      )
+    );
+    document.getElementById("form").hidden = true;
+  }
   return (
     <>
-      {sessionStorage.getItem("user") === null ? (
-        <div>
-          <h1>Please Sign In</h1>
-        </div>
-      ) : (
-        <div>
-          <textarea
-            name="essay"
-            rows={30}
-            cols={50}
-            value={text}
-            onChange={handleChange}
-          ></textarea>
-          <button onClick={save}>Save</button>
-        </div>
-      )}
+      <button id="addEssay" onClick={handleAdd}>
+        Add Essay
+      </button>
+      <div id="form" hidden>
+        <h3>Add an essay</h3>
+        <form>
+          <label>Prompt:</label>
+          <input type="text" value={prompt} onChange={handlePrompt} />
+          <br />
+          <fieldset onChange={handleCountType}>
+            <legend>Count Type</legend>
+            <input
+              type="radio"
+              name="countType"
+              id="wordCount"
+              value="Word Count"
+            />
+            <label>Word Count</label>
+            <br />
+            <input
+              type="radio"
+              name="countType"
+              id="charCount"
+              value="Character Count"
+            />
+            <label>Character Count</label>
+            <br />
+            <input
+              type="radio"
+              name="countType"
+              id="noCount"
+              value="No Count"
+            />
+            <label>No Count</label>
+            <br />
+          </fieldset>
+          <label id="countLabel" hidden>
+            Count:
+          </label>
+          <input
+            type="text"
+            value={count}
+            id="count"
+            onChange={handleCount}
+            hidden
+          />
+          <br />
+          <input type="submit" value="Add" onClick={handleSubmit} />
+        </form>
+      </div>
+      <div id="essays">{essays}</div>
     </>
   );
 }
-
 export default EssayManager;
