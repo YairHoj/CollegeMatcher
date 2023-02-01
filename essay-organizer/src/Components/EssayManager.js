@@ -11,22 +11,7 @@ function EssayManager() {
   const [college, setCollege] = useState();
   const [essays, setEssays] = useState([]);
 
-  useEffect(() => {
-    async function loadUser() {
-      const querySnapshot = await getDocs(
-        collection(
-          db,
-          JSON.parse(sessionStorage.getItem("user")).email,
-          "College",
-          "Essays"
-        )
-      );
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().text}`);
-      });
-    }
-    loadUser();
-  }, []);
+  useEffect(() => {}, []);
 
   function handleAdd() {
     document.getElementById("form").hidden = false;
@@ -119,12 +104,6 @@ function EssayManager() {
             hidden
           />
           <br />
-          <label for="college">College:</label>
-          <select id="colleges" name="colleges">
-            <option value="default" selected>
-              Choose A College
-            </option>
-          </select>
           <input type="submit" value="Add" onClick={handleSubmit} />
         </form>
       </div>

@@ -106,6 +106,22 @@ function CollegeList() {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    try {
+      await setDoc(
+        doc(
+          db,
+          JSON.parse(sessionStorage.getItem("user")).email,
+          college.item,
+          "essays",
+          "exists"
+        ),
+        {
+          exists: true,
+        }
+      );
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   // Checks for duplicate colleges in college list

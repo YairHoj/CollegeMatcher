@@ -8,7 +8,6 @@ function TextEditor(props) {
   let prompt = props.prompt;
   let countType = props.countType;
   let count = props.count;
-  // let college = props.college;
 
   async function handleSave() {
     try {

@@ -31,6 +31,7 @@ function App() {
             element={
               <>
                 <Nav />
+                <CollegeList />
               </>
             }
           />
@@ -40,14 +41,6 @@ function App() {
               <>
                 <Nav />
                 <EssayManager />
-              </>
-            }
-          />
-          <Route
-            path="/college-list"
-            element={
-              <>
-                <CollegeList />
               </>
             }
           />
