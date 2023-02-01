@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
-
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../Firebase";
 import College from "./College";
-import Axios from "axios";
 
 let collegesArray = [];
 let myCollegesList = [];
@@ -61,7 +61,7 @@ function CollegeList() {
 
   const [inputDATA, setInputData] = useState(" ");
 
-  const addElementToArray = () => {
+  const addElementToArray = async () => {
     const textInput = ref.current.value;
     myCollegesList.push(textInput);
     if (hasDuplicates(myCollegesList)) {
@@ -73,9 +73,19 @@ function CollegeList() {
     }
     myCollegesList.sort();
     console.log(myCollegesList);
+    try {
+      await setDoc(
+        doc(db, JSON.parse(sessionStorage.getItem("user")).email, textInput),
+        {
+          collegeName: textInput,
+        }
+      );
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
-  const onClick = (college) => {
+  const onClick = async (college) => {
     myCollegesList.push(college.item);
     if (hasDuplicates(myCollegesList)) {
       console.log("Duplicate elements found.");
@@ -86,6 +96,16 @@ function CollegeList() {
     }
     myCollegesList.sort();
     console.log(myCollegesList);
+    try {
+      await setDoc(
+        doc(db, JSON.parse(sessionStorage.getItem("user")).email, college.item),
+        {
+          collegeName: college.item,
+        }
+      );
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   // Checks for duplicate colleges in college list
