@@ -8,7 +8,7 @@ function EssayManager() {
   const [prompt, setPrompt] = useState("");
   const [countType, setCountType] = useState();
   const [count, setCount] = useState("");
-  // const [college, setCollege] = useState();
+  const [college, setCollege] = useState();
   const [essays, setEssays] = useState([]);
 
   useEffect(() => {
@@ -119,12 +119,12 @@ function EssayManager() {
             hidden
           />
           <br />
-          {/* <label for="college">College:</label>
-        <select id="colleges" name="colleges">
-          <option value="default" selected>
-            Choose A College
-          </option>
-        </select> */}
+          <label for="college">College:</label>
+          <select id="colleges" name="colleges">
+            <option value="default" selected>
+              Choose A College
+            </option>
+          </select>
           <input type="submit" value="Add" onClick={handleSubmit} />
         </form>
       </div>
