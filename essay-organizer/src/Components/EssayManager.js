@@ -62,7 +62,6 @@ function EssayManager() {
   };
   return (
     <>
-      <Nav />
       {sessionStorage.getItem("user") === null ? (
         <div>
           <h1>Please Sign In</h1>

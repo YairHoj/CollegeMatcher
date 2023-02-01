@@ -30,7 +30,7 @@ function GoogleSignIn() {
         shape: "pill",
         theme: "outline",
         text: "signin",
-        size: "large",
+        size: "medium",
         logo_alignment: "left",
       });
     } else {
@@ -43,7 +43,7 @@ function GoogleSignIn() {
       <div id="signInDiv"></div>
       {loggedIn && (
         <button id="signOut" onClick={handleSignOut}>
-          Sign Out
+          <h1 id="signOutText">Sign Out</h1>
         </button>
       )}
     </>

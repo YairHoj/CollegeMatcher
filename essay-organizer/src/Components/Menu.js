@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import x from "../xicon.png";
+import GoogleSignIn from "./GoogleSignIn";
 
 function Menu() {
   function handleClick(e) {
@@ -23,11 +24,7 @@ function Menu() {
           <a href="/essaymanager" className="navtext2" id="text">
             Essay Manager
           </a>
-          <div className="buttondiv2">
-            <a href="/login" className="login2">
-              Log in
-            </a>
-          </div>
+          <div className="buttondiv2"></div>
           <button id="xbutton" onClick={handleClick}>
             <img src={x} id="x" />
           </button>

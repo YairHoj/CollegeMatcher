@@ -14,8 +14,17 @@ function Nav() {
     let page = document.getElementById("page");
     page.style.display = "none";
   }
+  var width, height;
+  window.onresize = window.onload = function () {
+    console.log(this.innerWidth);
+    if (this.innerWidth < 1328) {
+      let button = document.querySelector("buttondiv");
+      let buttondiv2 = document.querySelector("buttondiv2");
+      buttondiv2.appendChild(button);
+    }
+  };
   return (
-    <div>
+    <div id="outercontainer">
       <div className="flex-container">
         <a href="/" className="logoroute">
           <div className="logodiv">

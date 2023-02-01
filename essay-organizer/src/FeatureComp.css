@@ -1,0 +1,33 @@
+#featurecomp {
+  background-color: #f1f7ff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  height: 230px;
+}
+
+#featurecomp p {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  white-space: pre-wrap;
+  font-size: 25px;
+  font-weight: 600;
+  color: #0099ff;
+  word-spacing: 1px;
+  line-height: 35px;
+  margin-bottom: 0;
+  margin-top: 35px;
+}
+
+.lastcomponent {
+  margin-bottom: 100px;
+}
