@@ -1,26 +1,19 @@
 import React from "react";
 import TextEditor from "./TextEditor";
 import { useState, useEffect } from "react";
-import { db } from "../Firebase";
-import { collection, getDocs } from "firebase/firestore";
-
 function EssayManager() {
   const [prompt, setPrompt] = useState("");
   const [countType, setCountType] = useState();
   const [count, setCount] = useState("");
   const [college, setCollege] = useState();
   const [essays, setEssays] = useState([]);
-
   useEffect(() => {}, []);
-
   function handleAdd() {
     document.getElementById("form").hidden = false;
   }
-
   function handlePrompt(e) {
     setPrompt(e.target.value);
   }
-
   function handleCountType(e) {
     if (
       document.getElementById("wordCount").checked ||
@@ -35,11 +28,9 @@ function EssayManager() {
     }
     setCountType(e.target.value);
   }
-
   function handleCount(e) {
     setCount(e.target.value);
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     setEssays(
@@ -54,7 +45,6 @@ function EssayManager() {
     );
     document.getElementById("form").hidden = true;
   }
-
   return (
     <>
       <button id="addEssay" onClick={handleAdd}>
@@ -111,5 +101,4 @@ function EssayManager() {
     </>
   );
 }
-
 export default EssayManager;
