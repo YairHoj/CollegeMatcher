@@ -3,6 +3,7 @@ import TextEditor from "./TextEditor";
 import { useState, useEffect } from "react";
 function EssayManager() {
   const [prompt, setPrompt] = useState("");
+  const [currCount, setCurrCount] = useState("");
   const [countType, setCountType] = useState();
   const [count, setCount] = useState("");
   const [college, setCollege] = useState();
@@ -28,9 +29,14 @@ function EssayManager() {
     }
     setCountType(e.target.value);
   }
+
   function handleCount(e) {
     setCount(e.target.value);
+    const result = e.target.value.replace(/\D/g, "");
+
+    setCount(result);
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     setEssays(
@@ -39,6 +45,7 @@ function EssayManager() {
           prompt={prompt}
           countType={countType}
           count={count}
+          // currentCount={currentCount}
           key={essays.length}
         />
       )
@@ -54,23 +61,23 @@ function EssayManager() {
         <h3>Add an essay</h3>
         <form>
           <label>Prompt:</label>
-          <input type="text" value={prompt} onChange={handlePrompt} />
+          <input
+            type="text"
+            value={prompt}
+            onChange={handlePrompt}
+            placeholder="Enter Prompt Here..."
+          />
           <br />
           <fieldset onChange={handleCountType}>
             <legend>Count Type</legend>
-            <input
-              type="radio"
-              name="countType"
-              id="wordCount"
-              value="Word Count"
-            />
+            <input type="radio" name="countType" id="wordCount" value="Words" />
             <label>Word Count</label>
             <br />
             <input
               type="radio"
               name="countType"
               id="charCount"
-              value="Character Count"
+              value="Characters"
             />
             <label>Character Count</label>
             <br />
