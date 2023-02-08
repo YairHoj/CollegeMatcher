@@ -5,6 +5,8 @@ import { db } from "../Firebase";
 
 function TextEditor(props) {
   const [text, setText] = useState(props.text);
+  const [currCount, setCurrCount] = useState();
+  const [color, setColor] = useState();
   let prompt = props.prompt;
   let countType = props.countType;
   let currentCount = props.currentCount;
@@ -35,8 +37,8 @@ function TextEditor(props) {
   function handleChange(e) {
     setText(e.target.value);
     let textBox = e.target.value;
-    console.log(currentCount);
-    if (countType == "Words") {
+    console.log(countType);
+    if (countType == "Word Count") {
       let wordArr = textBox.split(" ");
       let wordCount = 0;
       // Word Count Variable ^
@@ -44,12 +46,19 @@ function TextEditor(props) {
         if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
       }
       currentCount = wordCount;
+      setCurrCount(currentCount);
     }
 
-    if (countType == "Characters") {
+    if (countType == "Character Count") {
       let currentChars = textBox.length;
       // Character Count Variable^
       currentCount = currentChars;
+      setCurrCount(currentCount);
+    }
+    if (currentCount >= Number(count) + 1) {
+      setColor("red");
+    } else {
+      setColor("green");
     }
   }
 
@@ -64,9 +73,10 @@ function TextEditor(props) {
         value={text}
         onChange={handleChange}
       ></textarea>
-      <p>
-        {currentCount} / {count} {countType}{" "}
+      <p style={{ color: color }}>
+        {currCount} / {count} {countType}{" "}
       </p>
+
       <button id="save" onClick={handleSave}>
         Save
       </button>
