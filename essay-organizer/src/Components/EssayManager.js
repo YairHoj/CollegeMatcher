@@ -77,11 +77,15 @@ function EssayManager() {
   }
   return (
     <>
-      <div id="page">
-        <ul id="listul">{collegeList}</ul>
-        <h1 id="collegename">{college}</h1>
-        <ul>{essayList}</ul>
-      </div>
+      {collegeList.length > 0 ? (
+        <div id="page">
+          <ul id="listul">{collegeList}</ul>
+          <h1 id="collegename">{college}</h1>
+          <ul>{essayList}</ul>
+        </div>
+      ) : (
+        <h1>No Colleges in List</h1>
+      )}
     </>
   );
 }
