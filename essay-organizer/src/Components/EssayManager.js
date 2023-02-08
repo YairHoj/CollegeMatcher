@@ -5,6 +5,7 @@ import { getDocs, collection } from "firebase/firestore";
 import { db } from "../Firebase";
 import TextEditor from "./TextEditor";
 function EssayManager() {
+
   const [college, setCollege] = useState();
   const [collegeList, setColleges] = useState([]);
   const [essayList, setEssays] = useState([]);
@@ -86,6 +87,7 @@ function EssayManager() {
       ) : (
         <h1>No Colleges in List</h1>
       )}
+
     </>
   );
 }
