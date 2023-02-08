@@ -17,7 +17,12 @@ function EssayManager() {
         if (doc.id != "user") {
           setColleges((current) => [
             ...current,
-            <div id={doc.id} key={doc.id} onClick={changeCollege}>
+            <div
+              className="collegedivclass"
+              id={doc.id}
+              key={doc.id}
+              onClick={changeCollege}
+            >
               <CollegeEssays name={doc.id} />
             </div>,
           ]);
@@ -66,9 +71,11 @@ function EssayManager() {
   }
   return (
     <>
-      <h1>{college}</h1>
-      <ul>{collegeList}</ul>
-      <ul>{essayList}</ul>
+      <div id="page">
+        <ul id="listul">{collegeList}</ul>
+        <h1 id="collegename">{college}</h1>
+        <ul>{essayList}</ul>
+      </div>
     </>
   );
 }

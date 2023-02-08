@@ -46,8 +46,8 @@ function App() {
             path="/essaymanager"
             element={
               <>
-                <Menu2 />
-                <Nav2 />
+                <Menu />
+                <Nav />
                 <EssayManager />
               </>
             }

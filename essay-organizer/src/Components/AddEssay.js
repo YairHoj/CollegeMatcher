@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import { useState } from "react";
 import { db } from "../Firebase";
 import { setDoc, doc } from "firebase/firestore";
+import "../UsersEssays.css";
 
 function AddEssay(props) {
   const [prompt, setPrompt] = useState("");
@@ -55,7 +56,7 @@ function AddEssay(props) {
   }
 
   return (
-    <Popup id="popup" trigger={<button>Add Essay</button>} modal>
+    <Popup id="popup" trigger={<button>Add</button>} modal>
       {(close) => (
         <div id="form">
           <form>
