@@ -31,6 +31,9 @@ function AddEssay(props) {
 
   function handleCount(e) {
     setCount(e.target.value);
+    const result = e.target.value.replace(/\D/g, "");
+
+    setCount(result);
   }
 
   async function handleSubmit(e) {

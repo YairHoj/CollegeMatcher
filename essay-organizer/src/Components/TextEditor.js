@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 
@@ -33,6 +33,33 @@ function TextEditor(props) {
       console.error("Error adding document: ", e);
     }
   }
+
+  useEffect(() => {
+    let textBox = text;
+    console.log(countType);
+    if (countType == "Word Count") {
+      let wordArr = textBox.split(" ");
+      let wordCount = 0;
+      // Word Count Variable ^
+      for (let word of wordArr) {
+        if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
+      }
+      currentCount = wordCount;
+      setCurrCount(currentCount);
+    }
+
+    if (countType == "Character Count") {
+      let currentChars = textBox.length;
+      // Character Count Variable^
+      currentCount = currentChars;
+      setCurrCount(currentCount);
+    }
+    if (currentCount >= Number(count) + 1) {
+      setColor("red");
+    } else {
+      setColor("green");
+    }
+  }, []);
 
   function handleChange(e) {
     setText(e.target.value);
@@ -72,6 +99,7 @@ function TextEditor(props) {
         cols={50}
         value={text}
         onChange={handleChange}
+        id={prompt}
       ></textarea>
       <p style={{ color: color }}>
         {currCount} / {count} {countType}{" "}
