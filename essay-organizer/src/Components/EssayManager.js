@@ -4,11 +4,12 @@ import CollegeEssays from "./CollegeEssays";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../Firebase";
 import TextEditor from "./TextEditor";
-function EssayManager() {
 
+function EssayManager() {
   const [college, setCollege] = useState();
   const [collegeList, setColleges] = useState([]);
   const [essayList, setEssays] = useState([]);
+
   useEffect(() => {
     if (sessionStorage.getItem("user") == null) {
       sessionStorage.setItem(
@@ -81,13 +82,13 @@ function EssayManager() {
       {collegeList.length > 0 ? (
         <div id="page">
           <ul id="listul">{collegeList}</ul>
+          <h6>*New essays will only show up when the college is clicked again</h6>
           <h1 id="collegename">{college}</h1>
           <ul>{essayList}</ul>
         </div>
       ) : (
         <h1>No Colleges in List</h1>
       )}
-
     </>
   );
 }
