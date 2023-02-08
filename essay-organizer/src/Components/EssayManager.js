@@ -10,6 +10,15 @@ function EssayManager() {
   const [collegeList, setColleges] = useState([]);
   const [essayList, setEssays] = useState([]);
   useEffect(() => {
+    if (sessionStorage.getItem("user") == null) {
+      sessionStorage.setItem(
+        "previousPage",
+        "http://localhost:3000/essaymanager"
+      );
+      window.location = "http://localhost:3000/signIn";
+    }
+  });
+  useEffect(() => {
     async function loadUser() {
       const colleges = await getDocs(
         collection(db, JSON.parse(sessionStorage.getItem("user")).email)
@@ -22,7 +31,7 @@ function EssayManager() {
               className="collegedivclass"
               id={doc.id}
               key={doc.id}
-              onClick={changeCollege}
+              onClick={() => changeCollege(doc.id)}
             >
               <CollegeEssays name={doc.id} />
             </div>,
@@ -34,6 +43,7 @@ function EssayManager() {
   }, []);
   useEffect(() => {
     async function loadEssays() {
+      setEssays([]);
       const essays = await getDocs(
         collection(
           db,
@@ -63,22 +73,21 @@ function EssayManager() {
       loadEssays();
     }
   }, [college]);
-  async function changeCollege(e) {
-    const prev = college;
-    setCollege(e.target.id);
-    if (college != prev) {
-      setEssays([]);
-    }
-
+  async function changeCollege(id) {
+    setCollege(id);
   }
   return (
     <>
-      <div id="page">
-        <ul id="listul">{collegeList}</ul>
-        <h1 id="collegename">{college}</h1>
-        <ul>{essayList}</ul>
+      {collegeList.length > 0 ? (
+        <div id="page">
+          <ul id="listul">{collegeList}</ul>
+          <h1 id="collegename">{college}</h1>
+          <ul>{essayList}</ul>
+        </div>
+      ) : (
+        <h1>No Colleges in List</h1>
+      )}
 
-      </div>
     </>
   );
 }

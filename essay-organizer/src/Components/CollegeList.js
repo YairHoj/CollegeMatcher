@@ -15,7 +15,15 @@ let firstExec = true;
 let i = 0;
 
 function CollegeList() {
+  useEffect(() => {
+    if (sessionStorage.getItem("user") == null) {
+      sessionStorage.setItem("previousPage", "http://localhost:3000/browse");
+      window.location = "http://localhost:3000/signIn";
+    }
+  });
+
   const ref = useRef(null);
+  const [inputData, setInputData] = useState(" ");
 
   const [text, setText] = useState([]);
   const getPosts = async () => {
@@ -45,6 +53,10 @@ function CollegeList() {
   // Search and filter function
   const [filteredList, setFilteredList] = new useState(collegesArray);
 
+  function handleChange(e) {
+    setInputData(e.target.value);
+  }
+
   const filterBySearch = (event) => {
     // Access input value
     const query = event.target.value;
@@ -63,10 +75,8 @@ function CollegeList() {
 
   // Custom College Submit
 
-  const [inputDATA, setInputData] = useState(" ");
-
   const addElementToArray = async () => {
-    const textInput = ref.current.value;
+    const textInput = inputData;
     myCollegesList.push(textInput);
     if (hasDuplicates(myCollegesList)) {
       console.log("Duplicate elements found.");
@@ -103,6 +113,7 @@ function CollegeList() {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    setInputData("");
   };
 
   const onClick = async (college) => {
@@ -186,8 +197,8 @@ function CollegeList() {
               <input
                 className="search-box"
                 placeholder="Enter College"
-                onChange={(item) => setInputData(item)}
-                ref={ref}
+                onChange={handleChange}
+                value={inputData}
               />
             </div>
           </div>

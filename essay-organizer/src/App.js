@@ -11,6 +11,7 @@ import Looking from "./Components/Looking";
 import Footer from "./Components/Footer";
 import Menu2 from "./Components/Menu2";
 import Nav2 from "./Components/Nav2";
+import SignIn from "./Components/SignIn";
 
 function App() {
   return (
@@ -57,6 +58,14 @@ function App() {
             element={
               <>
                 <MyColleges />
+              </>
+            }
+          />
+          <Route
+            path="/signIn"
+            element={
+              <>
+                <SignIn />
               </>
             }
           />
