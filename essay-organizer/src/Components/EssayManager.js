@@ -1,110 +1,84 @@
 import React from "react";
-import TextEditor from "./TextEditor";
 import { useState, useEffect } from "react";
+import CollegeEssays from "./CollegeEssays";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../Firebase";
+import TextEditor from "./TextEditor";
 function EssayManager() {
-  const [prompt, setPrompt] = useState("");
-  const [currCount, setCurrCount] = useState("");
-  const [countType, setCountType] = useState();
-  const [count, setCount] = useState("");
+
   const [college, setCollege] = useState();
-  const [essays, setEssays] = useState([]);
-  useEffect(() => {}, []);
-  function handleAdd() {
-    document.getElementById("form").hidden = false;
-  }
-  function handlePrompt(e) {
-    setPrompt(e.target.value);
-  }
-  function handleCountType(e) {
-    if (
-      document.getElementById("wordCount").checked ||
-      document.getElementById("charCount").checked
-    ) {
-      document.getElementById("countLabel").hidden = false;
-      document.getElementById("count").hidden = false;
-    } else {
-      setCount(0);
-      document.getElementById("countLabel").hidden = true;
-      document.getElementById("count").hidden = true;
+  const [collegeList, setColleges] = useState([]);
+  const [essayList, setEssays] = useState([]);
+  useEffect(() => {
+    async function loadUser() {
+      const colleges = await getDocs(
+        collection(db, JSON.parse(sessionStorage.getItem("user")).email)
+      );
+      colleges.forEach((doc) => {
+        if (doc.id != "user") {
+          setColleges((current) => [
+            ...current,
+            <div
+              className="collegedivclass"
+              id={doc.id}
+              key={doc.id}
+              onClick={changeCollege}
+            >
+              <CollegeEssays name={doc.id} />
+            </div>,
+          ]);
+        }
+      });
     }
-    setCountType(e.target.value);
-  }
+    loadUser();
+  }, []);
+  useEffect(() => {
+    async function loadEssays() {
+      const essays = await getDocs(
+        collection(
+          db,
+          JSON.parse(sessionStorage.getItem("user")).email,
+          `${college}`,
+          "essays"
+        )
+      );
+      essays.forEach((doc) => {
+        if (doc.id != "exists") {
+          setEssays((current) => [
+            ...current,
+            <li key={doc.id}>
+              <TextEditor
+                prompt={doc.id}
+                text={doc.data().text}
+                count={doc.data().count}
+                countType={doc.data().countType}
+                college={college}
+              />
+            </li>,
+          ]);
+        }
+      });
+    }
+    if (college != undefined) {
+      loadEssays();
+    }
+  }, [college]);
+  async function changeCollege(e) {
+    const prev = college;
+    setCollege(e.target.id);
+    if (college != prev) {
+      setEssays([]);
+    }
 
-  function handleCount(e) {
-    setCount(e.target.value);
-    const result = e.target.value.replace(/\D/g, "");
-
-    setCount(result);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setEssays(
-      essays.concat(
-        <TextEditor
-          prompt={prompt}
-          countType={countType}
-          count={count}
-          // currentCount={currentCount}
-          key={essays.length}
-        />
-      )
-    );
-    document.getElementById("form").hidden = true;
   }
   return (
     <>
-      <button id="addEssay" onClick={handleAdd}>
-        Add Essay
-      </button>
-      <div id="form" hidden>
-        <h3>Add an essay</h3>
-        <form>
-          <label>Prompt:</label>
-          <input
-            type="text"
-            value={prompt}
-            onChange={handlePrompt}
-            placeholder="Enter Prompt Here..."
-          />
-          <br />
-          <fieldset onChange={handleCountType}>
-            <legend>Count Type</legend>
-            <input type="radio" name="countType" id="wordCount" value="Words" />
-            <label>Word Count</label>
-            <br />
-            <input
-              type="radio"
-              name="countType"
-              id="charCount"
-              value="Characters"
-            />
-            <label>Character Count</label>
-            <br />
-            <input
-              type="radio"
-              name="countType"
-              id="noCount"
-              value="No Count"
-            />
-            <label>No Count</label>
-            <br />
-          </fieldset>
-          <label id="countLabel" hidden>
-            Count:
-          </label>
-          <input
-            type="text"
-            value={count}
-            id="count"
-            onChange={handleCount}
-            hidden
-          />
-          <br />
-          <input type="submit" value="Add" onClick={handleSubmit} />
-        </form>
+      <div id="page">
+        <ul id="listul">{collegeList}</ul>
+        <h1 id="collegename">{college}</h1>
+        <ul>{essayList}</ul>
+
       </div>
-      <div id="essays">{essays}</div>
     </>
   );
 }

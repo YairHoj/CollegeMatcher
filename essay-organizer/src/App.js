@@ -7,6 +7,10 @@ import Features from "./Components/Features";
 import CollegeList from "./Components/CollegeList";
 import MyColleges from "./Components/MyColleges";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Looking from "./Components/Looking";
+import Footer from "./Components/Footer";
+import Menu2 from "./Components/Menu2";
+import Nav2 from "./Components/Nav2";
 
 function App() {
   return (
@@ -22,6 +26,8 @@ function App() {
                   <Nav />
                   <Heading />
                   <Features />
+                  <Looking />
+                  <Footer />
                 </div>
               </>
             }
@@ -30,7 +36,8 @@ function App() {
             path="/browse"
             element={
               <>
-                <Nav />
+                <Menu2 />
+                <Nav2 />
                 <CollegeList />
               </>
             }
@@ -39,6 +46,7 @@ function App() {
             path="/essaymanager"
             element={
               <>
+                <Menu />
                 <Nav />
                 <EssayManager />
               </>

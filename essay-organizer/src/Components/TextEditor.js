@@ -4,11 +4,12 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 
 function TextEditor(props) {
-  const [text, setText] = useState();
+  const [text, setText] = useState(props.text);
   let prompt = props.prompt;
   let countType = props.countType;
   let currentCount = props.currentCount;
   let count = props.count;
+  let college = props.college;
 
   async function handleSave() {
     try {
@@ -16,8 +17,8 @@ function TextEditor(props) {
         doc(
           db,
           JSON.parse(sessionStorage.getItem("user")).email,
-          "College",
-          "Essays",
+          college,
+          "essays",
           `${prompt}`
         ),
         {
