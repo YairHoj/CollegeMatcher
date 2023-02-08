@@ -83,6 +83,22 @@ function CollegeList() {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    try {
+      await setDoc(
+        doc(
+          db,
+          JSON.parse(sessionStorage.getItem("user")).email,
+          textInput,
+          "essays",
+          "exists"
+        ),
+        {
+          exists: true,
+        }
+      );
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   const onClick = async (college) => {

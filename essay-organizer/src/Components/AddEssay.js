@@ -56,7 +56,7 @@ function AddEssay(props) {
 
   return (
     <Popup id="popup" trigger={<button>Add Essay</button>} modal>
-      {
+      {(close) => (
         <div id="form">
           <form>
             <h3>Add an essay for {college}</h3>
@@ -101,10 +101,17 @@ function AddEssay(props) {
               hidden
             />
             <br />
-            <input type="submit" value="Add" onClick={handleSubmit} />
+            <input
+              type="submit"
+              value="Add"
+              onClick={(event) => {
+                handleSubmit(event);
+                close();
+              }}
+            />
           </form>
         </div>
-      }
+      )}
     </Popup>
   );
 }

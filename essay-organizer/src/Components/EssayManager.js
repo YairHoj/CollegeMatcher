@@ -17,9 +17,9 @@ function EssayManager() {
         if (doc.id != "user") {
           setColleges((current) => [
             ...current,
-            <li id={doc.id} key={doc.id} onClick={changeCollege}>
+            <div id={doc.id} key={doc.id} onClick={changeCollege}>
               <CollegeEssays name={doc.id} />
-            </li>,
+            </div>,
           ]);
         }
       });
@@ -58,8 +58,11 @@ function EssayManager() {
     }
   }, [college]);
   async function changeCollege(e) {
+    const prev = college;
     setCollege(e.target.id);
-    setEssays([]);
+    if (college != prev) {
+      setEssays([]);
+    }
   }
   return (
     <>
