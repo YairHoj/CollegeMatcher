@@ -11,7 +11,7 @@ function Nav() {
     menu.style.display = "flex";
     menu.style.alignItems = "center";
     menu.style.justifyContent = "center";
-    let page = document.getElementById("page");
+    let page = document.getElementById("page2");
     page.style.display = "none";
     let nav = document.getElementById("outercontainer");
     nav.style.display = "none";

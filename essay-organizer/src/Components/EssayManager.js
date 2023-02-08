@@ -1,6 +1,7 @@
 import React from "react";
 import TextEditor from "./TextEditor";
 import { useState, useEffect } from "react";
+import "../Manager.css";
 function EssayManager() {
   const [prompt, setPrompt] = useState("");
   const [countType, setCountType] = useState();
@@ -47,57 +48,67 @@ function EssayManager() {
   }
   return (
     <>
-      <button id="addEssay" onClick={handleAdd}>
-        Add Essay
-      </button>
-      <div id="form" hidden>
-        <h3>Add an essay</h3>
-        <form>
-          <label>Prompt:</label>
-          <input type="text" value={prompt} onChange={handlePrompt} />
-          <br />
-          <fieldset onChange={handleCountType}>
-            <legend>Count Type</legend>
-            <input
-              type="radio"
-              name="countType"
-              id="wordCount"
-              value="Word Count"
-            />
-            <label>Word Count</label>
+      <div id="page2">
+        <button id="addEssay" onClick={handleAdd}>
+          Add Essay
+        </button>
+        <div id="form" hidden>
+          <h3>Add your essay</h3>
+          <form>
+            <div id="prompt">
+              <label>Enter your essay prompt</label>
+              <input
+                id="input1"
+                type="text"
+                value={prompt}
+                placeholder="Type prompt here"
+                onChange={handlePrompt}
+              />
+            </div>
             <br />
+            <fieldset onChange={handleCountType}>
+              <legend>Count Type</legend>
+              <input
+                type="radio"
+                name="countType"
+                id="wordCount"
+                value="Word Count"
+              />
+              <label>Word Count</label>
+              <br />
+              <input
+                type="radio"
+                name="countType"
+                id="charCount"
+                value="Character Count"
+              />
+              <label>Character Count</label>
+              <br />
+              <input
+                type="radio"
+                name="countType"
+                id="noCount"
+                value="No Count"
+              />
+              <label>No Count</label>
+              <br />
+            </fieldset>
+            <label id="countLabel" hidden>
+              Count:
+            </label>
             <input
-              type="radio"
-              name="countType"
-              id="charCount"
-              value="Character Count"
+              type="text"
+              value={count}
+              id="count"
+              onChange={handleCount}
+              hidden
             />
-            <label>Character Count</label>
             <br />
-            <input
-              type="radio"
-              name="countType"
-              id="noCount"
-              value="No Count"
-            />
-            <label>No Count</label>
-            <br />
-          </fieldset>
-          <label id="countLabel" hidden>
-            Count:
-          </label>
-          <input
-            type="text"
-            value={count}
-            id="count"
-            onChange={handleCount}
-            hidden
-          />
-          <br />
-          <input type="submit" value="Add" onClick={handleSubmit} />
-        </form>
+            <input type="submit" value="Add" onClick={handleSubmit} />
+          </form>
+        </div>
+        <div id="essays">{essays}</div>
       </div>
-      <div id="essays">{essays}</div>
     </>
   );
 }
