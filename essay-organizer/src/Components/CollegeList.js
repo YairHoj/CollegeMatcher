@@ -3,6 +3,10 @@ import { useRef } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import College from "./College";
+import "../Browse.css";
+import search from "../search.svg";
+import plus from "../plus.png";
+import CollegeComp from "./CollegeComp";
 
 let collegesArray = [];
 let myCollegesList = [];
@@ -130,52 +134,69 @@ function CollegeList() {
   }
 
   return (
-    <div>
+    <div id="page2">
       <div className="search-header">
-        <div className="search-text">Search:</div>
-        <input id="search-box" onChange={filterBySearch} />
+        <div className="search-text">Find your college</div>
+        <div className="search-container">
+          <div className="search-image">
+            <img src={search}></img>
+          </div>
+          <input
+            className="search-box"
+            onChange={filterBySearch}
+            onInput={console.log("input detected")}
+            placeholder={"Browse Colleges..."}
+          />
+        </div>
       </div>
 
       <div id="item-list">
-        <ol>
-          <div>
-            <div>
-              {/* <label htmlFor="new-college">
+        <div id="addown">
+          <div id="addown2">
+            {/* <label htmlFor="new-college">
                 Don't see your college? Add your own custom college here:{" "}
               </label>
               <input type="text" id="custom-college" name="CustomCollege" />{" "}
               <button> Add college </button> */}
-              <p> Don't see your college? Add your own custom college here: </p>
+            <p> Don't see your college? Add your own custom college here: </p>
+            <div id="search-wrapper">
+              <div className="search-container">
+                <div className="search-image">
+                  <button onClick={addElementToArray} className="search-image">
+                    <img src={plus}></img>
+                  </button>
+                </div>
+              </div>
               <input
+                className="search-box"
                 placeholder="Enter College"
                 onChange={(item) => setInputData(item)}
                 ref={ref}
               />
-              <button onClick={addElementToArray}>Add College</button>
             </div>
-            <br />
           </div>
-          {/* {text.map((item, index) => {
-            return (
-              <div key={index}>
-                <p key={item.id}>{item.name}</p>
+          <br />
+        </div>
+        <ol>
+          <CollegeComp
+            content={filteredList.map((item, index) => (
+              <div className="collegecompwrapper">
+                <li key={index} className="li">
+                  {item}{" "}
+                  <button
+                    id={item}
+                    className="collegebutton"
+                    onClick={() => {
+                      onClick({ item });
+                    }}
+                  >
+                    {" "}
+                    Add
+                  </button>
+                </li>
               </div>
-            );
-          })} */}
-          {filteredList.map((item, index) => (
-            <li key={index}>
-              {item}{" "}
-              <button
-                id={item}
-                onClick={() => {
-                  onClick({ item });
-                }}
-              >
-                {" "}
-                Add college
-              </button>
-            </li>
-          ))}
+            ))}
+          />
         </ol>
       </div>
     </div>

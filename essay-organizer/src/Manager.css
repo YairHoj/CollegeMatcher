@@ -1,0 +1,52 @@
+#page2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#addEssay {
+  background-color: rgb(16, 127, 200);
+  padding: 12px 24px;
+  border: none;
+  color: white;
+  border-radius: 15px;
+  font-size: 15px;
+}
+
+#form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#form h3 {
+  color: white;
+  margin-bottom: 30px;
+}
+
+#prompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label:nth-child(1) {
+  color: white;
+}
+
+#input1 {
+  border: none;
+  margin-top: 10px;
+  height: 40px;
+  width: 300px;
+  border-radius: 14px;
+  padding-left: 15px;
+  color: #0099ff;
+}
+
+#input1:focus {
+  outline: none;
+}

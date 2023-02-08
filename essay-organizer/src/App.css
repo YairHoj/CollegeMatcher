@@ -104,6 +104,7 @@ html {
 .burgerimage {
   width: 35px;
   height: 35px;
+  margin-top: 3px;
 }
 
 /* CSS for <Heading/> component*/
@@ -213,14 +214,37 @@ html {
     width: 150vw !important;
   }
   .App {
-    width: 150vw !important;
+    width: 100vw !important;
+    overflow-x: hidden !important;
   }
   #menu2 {
-    width: 150vw;
-    height: 150vh;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #text1 {
+    font-size: 30px;
+    margin-top: -100px !important;
+  }
+  #text {
+    font-size: 30px;
+  }
+
+  #x {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .menuitems {
+    row-gap: 100px !important;
+    align-items: center;
+    justify-content: center;
+    height: 100vw;
   }
   .flex-container {
     justify-content: center;
+  }
+  #wave2 {
+    width: 150vw !important;
   }
 }
 
@@ -246,7 +270,7 @@ html {
   display: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.305);
+  background-color: #0099ff;
 }
 
 .menuitems {
@@ -318,7 +342,7 @@ html {
 
 #signOut {
   border: none;
-  height: 42px;
+  height: 38px;
   width: 110px;
   padding: 0;
 }
@@ -363,4 +387,5 @@ html {
 #wave2 {
   width: 100vw;
   z-index: -20;
+  margin-top: -10px;
 }
