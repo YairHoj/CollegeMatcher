@@ -5,6 +5,7 @@ import { getDocs, collection } from "firebase/firestore";
 import { db } from "../Firebase";
 import TextEditor from "./TextEditor";
 function EssayManager() {
+
   const [college, setCollege] = useState();
   const [collegeList, setColleges] = useState([]);
   const [essayList, setEssays] = useState([]);
@@ -68,6 +69,7 @@ function EssayManager() {
     if (college != prev) {
       setEssays([]);
     }
+
   }
   return (
     <>
@@ -75,6 +77,7 @@ function EssayManager() {
         <ul id="listul">{collegeList}</ul>
         <h1 id="collegename">{college}</h1>
         <ul>{essayList}</ul>
+
       </div>
     </>
   );

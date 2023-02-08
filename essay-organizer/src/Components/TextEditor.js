@@ -7,6 +7,7 @@ function TextEditor(props) {
   const [text, setText] = useState(props.text);
   let prompt = props.prompt;
   let countType = props.countType;
+  let currentCount = props.currentCount;
   let count = props.count;
   let college = props.college;
 
@@ -33,6 +34,23 @@ function TextEditor(props) {
 
   function handleChange(e) {
     setText(e.target.value);
+    let textBox = e.target.value;
+    console.log(currentCount);
+    if (countType == "Words") {
+      let wordArr = textBox.split(" ");
+      let wordCount = 0;
+      // Word Count Variable ^
+      for (let word of wordArr) {
+        if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
+      }
+      currentCount = wordCount;
+    }
+
+    if (countType == "Characters") {
+      let currentChars = textBox.length;
+      // Character Count Variable^
+      currentCount = currentChars;
+    }
   }
 
   return (
@@ -47,7 +65,7 @@ function TextEditor(props) {
         onChange={handleChange}
       ></textarea>
       <p>
-        {count} {countType}
+        {currentCount} / {count} {countType}{" "}
       </p>
       <button id="save" onClick={handleSave}>
         Save
