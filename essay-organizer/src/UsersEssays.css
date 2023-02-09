@@ -31,10 +31,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
+  cursor: pointer;
 }
 .useressay button:hover {
   color: rgb(28, 108, 160);
   background-color: white;
+  cursor: pointer;
 }
 
 .useressay h5:hover {
@@ -162,6 +164,7 @@ textarea {
   padding-left: 0px;
   display: flex;
   flex-direction: column;
+  margin-top: -20px;
 }
 
 #essaylist li::marker {
@@ -229,4 +232,40 @@ textarea {
 
 textarea:focus {
   outline: none;
+}
+
+#addanddelete {
+  display: flex;
+  column-gap: 5px;
+}
+
+#autosave {
+  color: white;
+}
+
+#signindiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+#signintext {
+  margin-top: -100px;
+  color: white;
+}
+
+#homebutton {
+  width: 40px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+#page4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }

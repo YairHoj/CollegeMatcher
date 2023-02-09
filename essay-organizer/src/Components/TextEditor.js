@@ -43,7 +43,7 @@ function TextEditor(props) {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-    setSaved("Saved");
+    setSaved("Saved to cloud");
   }
 
   let actualCount;
@@ -154,12 +154,11 @@ function TextEditor(props) {
       ></textarea>
       <p id="wordcount" style={{ color: color }}>
         {currCount} {count} {countType}{" "}
-
       </p>
       <div id="essaybuttons">
-            <button id="save" onClick={handleDelete}>
-        Delete
-      </button>
+        <button id="save" onClick={handleDelete}>
+          Delete
+        </button>
         <CopyToClipboard
           text={text}
           onCopy={() =>
@@ -172,8 +171,8 @@ function TextEditor(props) {
         >
           <button id="save">Copy to clipboard</button>
         </CopyToClipboard>
-        <h4 id="autosave">{saved}</h4>
       </div>
+      <h4 id="autosave">{saved}</h4>
     </>
   );
 }
