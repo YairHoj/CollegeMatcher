@@ -9,6 +9,7 @@ function EssayManager() {
   const [college, setCollege] = useState();
   const [collegeList, setColleges] = useState([]);
   const [essayList, setEssays] = useState([]);
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
     if (sessionStorage.getItem("user") == null) {
@@ -20,6 +21,7 @@ function EssayManager() {
     }
   });
   useEffect(() => {
+    setLoading("Loading");
     async function loadUser() {
       const colleges = await getDocs(
         collection(db, JSON.parse(sessionStorage.getItem("user")).email)
@@ -39,6 +41,9 @@ function EssayManager() {
           ]);
         }
       });
+      if (collegeList.length == 0) {
+        setLoading("No Colleges in List");
+      }
     }
     loadUser();
   }, []);
@@ -88,16 +93,14 @@ function EssayManager() {
     <>
       {collegeList.length > 0 || sessionStorage.getItem("college" != null) ? (
         <div id="page3">
-          <ul id="listul">
-            {collegeList}
-          </ul>
+          <ul id="listul">{collegeList}</ul>
           <ul id="essaylist">
             <h1 id="collegename">{college}</h1>
             {essayList}
           </ul>
         </div>
       ) : (
-        <h1 id="nocolleges">No Colleges in List</h1>
+        <h1 id="nocolleges">{loading}</h1>
       )}
     </>
   );
