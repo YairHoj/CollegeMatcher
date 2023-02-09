@@ -46,14 +46,14 @@ function TextEditor(props) {
       for (let word of wordArr) {
         if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
       }
-      currentCount = wordCount;
+      currentCount = wordCount + " /";
       setCurrCount(currentCount);
     }
 
     if (countType == "Character Count") {
       let currentChars = textBox.length;
       // Character Count Variable^
-      currentCount = currentChars;
+      currentCount = currentChars + " /";
       setCurrCount(currentCount);
     }
     if (currentCount >= Number(count) + 1) {
@@ -73,14 +73,15 @@ function TextEditor(props) {
       for (let word of wordArr) {
         if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
       }
-      currentCount = wordCount;
+      currentCount = wordCount + " /";
+      console.log(currentCount);
       setCurrCount(currentCount);
     }
 
     if (countType == "Character Count") {
       let currentChars = textBox.length;
       // Character Count Variable^
-      currentCount = currentChars;
+      currentCount = currentChars + " /";
       setCurrCount(currentCount);
     }
     if (currentCount >= Number(count) + 1) {
@@ -103,7 +104,7 @@ function TextEditor(props) {
         id={prompt}
       ></textarea>
       <p style={{ color: color }}>
-        {currCount} / {count} {countType}{" "}
+        {currCount} {count} {countType}{" "}
       </p>
       <CopyToClipboard
         text={text}
