@@ -7,6 +7,7 @@ import "../Browse.css";
 import search from "../search.svg";
 import plus from "../plus.png";
 import CollegeComp from "./CollegeComp";
+import { NotificationManager } from "react-notifications";
 
 let collegesArray = [];
 let myCollegesList = [];
@@ -28,9 +29,12 @@ function CollegeList() {
   const [text, setText] = useState([]);
   const getPosts = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://essay-organizer-backend.onrender.com/",
+        {
+          method: "GET",
+        }
+      );
       const data = await response.json();
       // console.log(data);
       for (let q = 0; i < 3202; i++) {
@@ -120,7 +124,11 @@ function CollegeList() {
     myCollegesList.push(college.item);
     if (hasDuplicates(myCollegesList)) {
       console.log("Duplicate elements found.");
-      alert("You have already added this college");
+      NotificationManager.error(
+        "You already have this college added.",
+        "Unable to add college",
+        3000
+      );
       myCollegesList.pop();
     } else {
       console.log("No Duplicates found.");
