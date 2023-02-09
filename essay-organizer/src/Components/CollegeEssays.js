@@ -29,10 +29,12 @@ function CollegeEssays(props) {
     <>
       <div className="useressay">
         <h5 id={props.name}>{props.name}</h5>
-        <AddEssay id="addessaybutton" college={props.name} />
-        <button id="delete" onClick={handleDelete}>
-          Delete
-        </button>
+        <div id="addanddelete">
+          <AddEssay id="addessaybutton" college={props.name} />
+          <button id="delete" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </div>
     </>
   );

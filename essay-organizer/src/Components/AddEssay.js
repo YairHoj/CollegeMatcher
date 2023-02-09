@@ -120,7 +120,6 @@ function AddEssay(props) {
               type="submit"
               value="Add"
               onClick={(event) => {
-                handleSubmit(event);
                 if (
                   prompt != "" &&
                   (((countType == "Word Count" ||
@@ -128,6 +127,7 @@ function AddEssay(props) {
                     count != "") ||
                     countType == "No Count")
                 ) {
+                  handleSubmit(event);
                   close();
                 }
               }}
