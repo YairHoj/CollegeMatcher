@@ -43,6 +43,12 @@ function EssayManager() {
     loadUser();
   }, []);
   useEffect(() => {
+    if (
+      sessionStorage.getItem("college") != undefined &&
+      college == undefined
+    ) {
+      setCollege(sessionStorage.getItem("college"));
+    }
     async function loadEssays() {
       setEssays([]);
       const essays = await getDocs(
@@ -76,13 +82,13 @@ function EssayManager() {
   }, [college]);
   async function changeCollege(id) {
     setCollege(id);
+    sessionStorage.setItem("college", id);
   }
   return (
     <>
-      {collegeList.length > 0 ? (
+      {collegeList.length > 0 || sessionStorage.getItem("college" != null) ? (
         <div id="page">
           <ul id="listul">{collegeList}</ul>
-          <h6>*New essays will only show up when the college is clicked again</h6>
           <h1 id="collegename">{college}</h1>
           <ul>{essayList}</ul>
         </div>
