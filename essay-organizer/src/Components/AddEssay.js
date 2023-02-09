@@ -62,13 +62,19 @@ function AddEssay(props) {
     <Popup id="popup" trigger={<button>Add</button>} modal>
       {(close) => (
         <div id="form">
-          <form>
+          <form id="popupform">
             <h3>Add an essay for {college}</h3>
-            <label>Prompt:</label>
-            <input type="text" value={prompt} onChange={handlePrompt} />
+            <label id="prompt1">Add your essay prompt:</label>
+            <input
+              required
+              id="input1"
+              type="text"
+              value={prompt}
+              onChange={handlePrompt}
+            />
             <br />
+            <h3>Count Type</h3>
             <fieldset onChange={handleCountType}>
-              <legend>Count Type</legend>
               <input
                 type="radio"
                 name="countType"
@@ -101,16 +107,20 @@ function AddEssay(props) {
               type="text"
               value={count}
               id="count"
+              placeholder="Enter here"
               onChange={handleCount}
               hidden
             />
             <br />
             <input
+              id="submit"
               type="submit"
               value="Add"
               onClick={(event) => {
                 handleSubmit(event);
-                close();
+                if (prompt != "" && count != "") {
+                  close();
+                }
               }}
             />
           </form>

@@ -3,13 +3,13 @@ import "../App.css";
 import x from "../xicon.png";
 import GoogleSignIn from "./GoogleSignIn";
 
-function Menu() {
+function Menu(props) {
   function handleClick(e) {
     e.preventDefault();
     let menu = document.getElementById("menu2");
     menu.style.display = "none";
-    let page = document.getElementById("page");
-    page.style.display = "block";
+    let page = document.getElementById(props.page);
+    page.style.display = props.display1;
     let nav = document.getElementById("outercontainer");
     nav.style.display = "block";
   }

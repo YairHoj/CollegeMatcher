@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
+import "../UsersEssays.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { NotificationManager } from "react-notifications";
 
@@ -65,7 +66,7 @@ function TextEditor(props) {
     if (actualCount >= Number(count) + 1) {
       setColor("red");
     } else {
-      setColor("green");
+      setColor("0099ff");
     }
   }, []);
   function handleChange(e) {
@@ -96,13 +97,13 @@ function TextEditor(props) {
     if (actualCount >= Number(count) + 1) {
       setColor("red");
     } else {
-      setColor("green");
+      setColor("#0099ff");
     }
   }
 
   return (
     <>
-      <h3>{prompt}</h3>
+      <h3 id="prompth3">Prompt: {prompt}</h3>
       {/* <h6>{college}</h6> */}
       <textarea
         name={prompt}
@@ -112,8 +113,9 @@ function TextEditor(props) {
         onChange={handleChange}
         id={prompt}
       ></textarea>
-      <p style={{ color: color }}>
+      <p id="wordcount" style={{ color: color }}>
         {currCount} {count} {countType}{" "}
+
       </p>
       <CopyToClipboard
         text={text}

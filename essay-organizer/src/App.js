@@ -24,9 +24,9 @@ function App() {
             path="/"
             element={
               <>
-                <Menu />
+                <Menu page="page" display1="block" />
                 <div id="page">
-                  <Nav />
+                  <Nav page="page" />
                   <Heading />
                   <Features />
                   <Looking />
@@ -39,8 +39,8 @@ function App() {
             path="/browse"
             element={
               <>
-                <Menu2 />
-                <Nav2 />
+                <Menu page="page2" display1="flex" />
+                <Nav page="page2" />
                 <CollegeList />
               </>
             }
@@ -49,8 +49,8 @@ function App() {
             path="/essaymanager"
             element={
               <>
-                <Menu />
-                <Nav />
+                <Menu page="page3" display1="flex" />
+                <Nav page="page3" />
                 <EssayManager />
               </>
             }
