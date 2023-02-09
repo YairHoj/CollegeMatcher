@@ -56,6 +56,9 @@ function AddEssay(props) {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    if (college == sessionStorage.getItem("college")) {
+      window.location.reload();
+    }
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import "../UsersEssays.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -15,6 +15,14 @@ function TextEditor(props) {
   let currentCount = props.currentCount;
   let count = props.count;
   let college = props.college;
+  const [typing, setTyping] = useState(false);
+  const [saved, setSaved] = useState("Not Saved");
+
+  useEffect(() => {
+    if (!typing) {
+      handleSave();
+    }
+  }, [typing]);
 
   async function handleSave() {
     try {
@@ -35,6 +43,7 @@ function TextEditor(props) {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    setSaved("Saved");
   }
 
   let actualCount;
@@ -70,6 +79,8 @@ function TextEditor(props) {
     }
   }, []);
   function handleChange(e) {
+    setSaved("Not Saved");
+    handleTyping();
     setText(e.target.value);
     let textBox = e.target.value;
     console.log(countType);
@@ -101,6 +112,34 @@ function TextEditor(props) {
     }
   }
 
+  function handleTyping() {
+    let stillTyping;
+    if (!typing) {
+      setTyping(true);
+      stillTyping = setTimeout(() => {
+        setTyping(false);
+      }, 3000);
+    } else {
+      clearTimeout(stillTyping);
+      stillTyping = setTimeout(() => {
+        setTyping(false);
+      }, 3000);
+    }
+  }
+
+  async function handleDelete() {
+    await deleteDoc(
+      doc(
+        db,
+        JSON.parse(sessionStorage.getItem("user")).email,
+        college,
+        "essays",
+        `${prompt}`
+      )
+    );
+    window.location.reload();
+  }
+
   return (
     <>
       <h3 id="prompth3">Prompt: {prompt}</h3>
@@ -118,9 +157,9 @@ function TextEditor(props) {
 
       </p>
       <div id="essaybuttons">
-        <button id="save" onClick={handleSave}>
-          Save
-        </button>
+            <button id="save" onClick={handleDelete}>
+        Delete
+      </button>
         <CopyToClipboard
           text={text}
           onCopy={() =>
@@ -133,6 +172,7 @@ function TextEditor(props) {
         >
           <button id="save">Copy to clipboard</button>
         </CopyToClipboard>
+        <h4 id="autosave">{saved}</h4>
       </div>
     </>
   );
