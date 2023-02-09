@@ -81,7 +81,6 @@ function EssayManager() {
     <>
       {collegeList.length > 0 ? (
         <div id="page3">
-<<<<<<< HEAD
           <ul id="listul">
             {collegeList}
             <h6>
@@ -94,18 +93,6 @@ function EssayManager() {
             <h1 id="collegename">{college}</h1>
             {essayList}
           </ul>
-=======
-          <ul id="listul">{collegeList}</ul>
-          <div id="essaylistdiv">
-            <h1 id="collegename">{college}</h1>
-            <ul id="essaylist">{essayList}</ul>
-          </div>
-          <h6>
-            *New essays will only show up when the college is clicked again
-          </h6>
-          <h1 id="collegename">{college}</h1>
-          <ul>{essayList}</ul>
->>>>>>> cc252faf3b7a8062b500973a66a0c05ba7f983e3
         </div>
       ) : (
         <h1 id="nocolleges">No Colleges in List</h1>
