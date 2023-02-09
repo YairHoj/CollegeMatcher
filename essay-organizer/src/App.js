@@ -12,6 +12,8 @@ import Footer from "./Components/Footer";
 import Menu2 from "./Components/Menu2";
 import Nav2 from "./Components/Nav2";
 import SignIn from "./Components/SignIn";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
 
 function App() {
   return (
@@ -70,6 +72,7 @@ function App() {
             }
           />
         </Routes>
+        <NotificationContainer />
       </Router>
     </div>
   );

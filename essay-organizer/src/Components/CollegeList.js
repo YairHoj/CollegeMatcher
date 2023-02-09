@@ -28,9 +28,12 @@ function CollegeList() {
   const [text, setText] = useState([]);
   const getPosts = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://essay-organizer-backend.onrender.com/",
+        {
+          method: "GET",
+        }
+      );
       const data = await response.json();
       // console.log(data);
       for (let q = 0; i < 3202; i++) {
