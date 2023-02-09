@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
+import "../UsersEssays.css";
 
 function TextEditor(props) {
   const [text, setText] = useState(props.text);

@@ -76,18 +76,22 @@ function EssayManager() {
   }, [college]);
   async function changeCollege(id) {
     setCollege(id);
+    let name2 = document.getElementById(id);
+    name2.firstChild.style.color = "#03f0fc";
   }
   return (
     <>
       {collegeList.length > 0 ? (
-        <div id="page">
+        <div id="page3">
           <ul id="listul">{collegeList}</ul>
-          <h6>*New essays will only show up when the college is clicked again</h6>
-          <h1 id="collegename">{college}</h1>
-          <ul>{essayList}</ul>
+
+          <div id="essaylistdiv">
+            <h1 id="collegename">{college}</h1>
+            <ul id="essaylist">{essayList}</ul>
+          </div>
         </div>
       ) : (
-        <h1>No Colleges in List</h1>
+        <h1 id="nocolleges">No Colleges in List</h1>
       )}
     </>
   );

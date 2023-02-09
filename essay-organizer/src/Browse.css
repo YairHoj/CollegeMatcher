@@ -150,3 +150,16 @@ ol {
 .search-image:hover {
   background-color: rgb(15, 86, 180);
 }
+
+#page3 {
+  padding-left: 15vw;
+  padding-right: 15vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+#essaylistdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

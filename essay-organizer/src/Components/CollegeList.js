@@ -161,7 +161,7 @@ function CollegeList() {
   }
 
   return (
-    <div id="page2">
+    <div id="page3">
       <div className="search-header">
         <div className="search-text">Find your college</div>
         <div className="search-container">
