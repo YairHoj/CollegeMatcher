@@ -117,21 +117,23 @@ function TextEditor(props) {
         {currCount} {count} {countType}{" "}
 
       </p>
-      <CopyToClipboard
-        text={text}
-        onCopy={() =>
-          NotificationManager.success(
-            "Successfully copied to clipboard.",
-            "Success!",
-            3000
-          )
-        }
-      >
-        <button>Copy to clipboard</button>
-      </CopyToClipboard>
-      <button id="save" onClick={handleSave}>
-        Save
-      </button>
+      <div id="essaybuttons">
+        <button id="save" onClick={handleSave}>
+          Save
+        </button>
+        <CopyToClipboard
+          text={text}
+          onCopy={() =>
+            NotificationManager.success(
+              "Successfully copied to clipboard.",
+              "Success!",
+              3000
+            )
+          }
+        >
+          <button id="save">Copy to clipboard</button>
+        </CopyToClipboard>
+      </div>
     </>
   );
 }

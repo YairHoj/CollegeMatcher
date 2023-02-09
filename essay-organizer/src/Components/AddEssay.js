@@ -118,7 +118,13 @@ function AddEssay(props) {
               value="Add"
               onClick={(event) => {
                 handleSubmit(event);
-                if (prompt != "" && count != "") {
+                if (
+                  prompt != "" &&
+                  (((countType == "Word Count" ||
+                    countType == "Character Count") &&
+                    count != "") ||
+                    countType == "No Count")
+                ) {
                   close();
                 }
               }}
