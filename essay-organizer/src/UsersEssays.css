@@ -155,7 +155,7 @@ fieldset label {
 
 textarea {
   width: 45vw;
-  height: 60vh;
+  height: 55vh;
 }
 
 #essaylist {
@@ -173,6 +173,7 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 #prompth3 {
@@ -198,7 +199,34 @@ textarea {
 
 #wordcount {
   background-color: white;
+  width: fit-content;
   padding: 10px 20px;
   border-radius: 12px;
   color: #0099ff;
+}
+
+#essaybuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 7px;
+}
+
+#listul h6 {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+textarea {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+  padding: 10px;
+}
+
+textarea:focus {
+  outline: none;
 }
