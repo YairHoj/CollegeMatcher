@@ -87,13 +87,17 @@ function EssayManager() {
   return (
     <>
       {collegeList.length > 0 || sessionStorage.getItem("college" != null) ? (
-        <div id="page">
-          <ul id="listul">{collegeList}</ul>
-          <h1 id="collegename">{college}</h1>
-          <ul>{essayList}</ul>
+        <div id="page3">
+          <ul id="listul">
+            {collegeList}
+          </ul>
+          <ul id="essaylist">
+            <h1 id="collegename">{college}</h1>
+            {essayList}
+          </ul>
         </div>
       ) : (
-        <h1>No Colleges in List</h1>
+        <h1 id="nocolleges">No Colleges in List</h1>
       )}
     </>
   );

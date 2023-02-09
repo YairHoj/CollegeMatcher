@@ -4,14 +4,14 @@ import logo from "../logo.png";
 import GoogleSignIn from "./GoogleSignIn";
 import burger from "../Hamburger_icon.svg.png";
 
-function Nav() {
+function Nav(props) {
   function handleClick(e) {
     e.preventDefault();
     let menu = document.getElementById("menu2");
     menu.style.display = "flex";
     menu.style.alignItems = "center";
     menu.style.justifyContent = "center";
-    let page = document.getElementById("page");
+    let page = document.getElementById(props.page);
     page.style.display = "none";
     let nav = document.getElementById("outercontainer");
     nav.style.display = "none";

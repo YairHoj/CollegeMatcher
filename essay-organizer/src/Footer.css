@@ -80,6 +80,17 @@
 }
 
 #copyright {
-  margin-top: 40px;
   color: #0099ff;
+  background-color: white;
+  font-size: 20px;
+  margin-top: -5px;
+}
+
+#copyrightdiv {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100px;
 }

@@ -18,6 +18,7 @@
   flex-direction: column;
   row-gap: 10px;
   column-gap: 20px;
+  padding-left: 0;
 }
 
 .useressay button {
@@ -52,12 +53,180 @@
   width: fit-content;
 }
 
+.popup-content {
+  background-color: #0084ff;
+  padding: 40px;
+  border-radius: 20px;
+}
 .popup-overlay {
-  background-color: #0099ff;
+  background-color: rgba(0, 0, 0, 0.372);
 }
 
 #form {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+#form h3 {
+  color: white;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+label:nth-child(1) {
+  color: white;
+}
+
+#input1 {
+  border: none;
+  margin-top: 10px;
+  height: 40px;
+  width: 300px;
+  border-radius: 14px;
+  padding-left: 15px;
+  color: #0099ff;
+}
+
+#prompt1 {
+  color: white;
+}
+
+#input1:focus {
+  outline: none;
+}
+
+#popupform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset label {
+  color: white;
+}
+
+#countLabel {
+  color: white;
+  margin-top: 15px;
+}
+#count {
+  border: none;
+  margin-top: 10px;
+  height: 30px;
+  width: 80px;
+  border-radius: 14px;
+  color: #0099ff;
+  text-indent: 10px;
+}
+
+#count:focus {
+  outline: none;
+}
+
+#count::placeholder {
+  text-align: center;
+  text-indent: 0px;
+}
+
+#submit {
+  height: 30px;
+  background-color: rgb(28, 108, 160);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+#submit:hover {
+  color: rgb(28, 108, 160);
+  background-color: white;
+}
+
+textarea {
+  width: 45vw;
+  height: 55vh;
+}
+
+#essaylist {
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+#essaylist li::marker {
+  color: rgba(0, 0, 0, 0);
+}
+
+#essaylist li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+#prompth3 {
+  color: white;
+}
+
+#save {
+  height: 30px;
+  background-color: rgb(28, 108, 160);
+  color: white;
+  border: none;
+  padding: 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+#save:hover {
+  color: rgb(28, 108, 160);
+  background-color: white;
+}
+
+#wordcount {
+  background-color: white;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 12px;
+  color: #0099ff;
+}
+
+#essaybuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 7px;
+}
+
+#listul h6 {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+textarea {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 18px;
+  padding: 10px;
+}
+
+textarea:focus {
+  outline: none;
 }

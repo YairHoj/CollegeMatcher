@@ -12,6 +12,8 @@ import Footer from "./Components/Footer";
 import Menu2 from "./Components/Menu2";
 import Nav2 from "./Components/Nav2";
 import SignIn from "./Components/SignIn";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
 
 function App() {
   return (
@@ -22,9 +24,9 @@ function App() {
             path="/"
             element={
               <>
-                <Menu />
+                <Menu page="page" display1="block" />
                 <div id="page">
-                  <Nav />
+                  <Nav page="page" />
                   <Heading />
                   <Features />
                   <Looking />
@@ -37,8 +39,8 @@ function App() {
             path="/browse"
             element={
               <>
-                <Menu2 />
-                <Nav2 />
+                <Menu page="page2" display1="flex" />
+                <Nav page="page2" />
                 <CollegeList />
               </>
             }
@@ -47,8 +49,8 @@ function App() {
             path="/essaymanager"
             element={
               <>
-                <Menu />
-                <Nav />
+                <Menu page="page3" display1="flex" />
+                <Nav page="page3" />
                 <EssayManager />
               </>
             }
@@ -70,6 +72,7 @@ function App() {
             }
           />
         </Routes>
+        <NotificationContainer />
       </Router>
     </div>
   );
