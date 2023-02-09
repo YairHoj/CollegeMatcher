@@ -152,14 +152,25 @@ ol {
 }
 
 #page3 {
-  padding-left: 15vw;
-  padding-right: 15vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #essaylistdiv {
+  padding-right: 5vw;
+  padding-left: 5vw;
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#nocolleges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
 }

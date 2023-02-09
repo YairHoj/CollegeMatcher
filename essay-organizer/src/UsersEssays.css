@@ -154,10 +154,51 @@ fieldset label {
 }
 
 textarea {
-  width: 300px;
-  height: 436px;
+  width: 45vw;
+  height: 60vh;
 }
 
 #essaylist {
   padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+#essaylist li::marker {
+  color: rgba(0, 0, 0, 0);
+}
+
+#essaylist li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#prompth3 {
+  color: white;
+}
+
+#save {
+  height: 30px;
+  background-color: rgb(28, 108, 160);
+  color: white;
+  border: none;
+  padding: 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+#save:hover {
+  color: rgb(28, 108, 160);
+  background-color: white;
+}
+
+#wordcount {
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  color: #0099ff;
 }
