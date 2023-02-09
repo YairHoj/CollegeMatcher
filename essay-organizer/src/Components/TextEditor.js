@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { NotificationManager } from "react-notifications";
 
 function TextEditor(props) {
   const [text, setText] = useState(props.text);
@@ -60,7 +62,6 @@ function TextEditor(props) {
       setColor("green");
     }
   }, []);
-
   function handleChange(e) {
     setText(e.target.value);
     let textBox = e.target.value;
@@ -104,7 +105,18 @@ function TextEditor(props) {
       <p style={{ color: color }}>
         {currCount} / {count} {countType}{" "}
       </p>
-
+      <CopyToClipboard
+        text={text}
+        onCopy={() =>
+          NotificationManager.success(
+            "Successfully copied to clipboard.",
+            "Success",
+            1500
+          )
+        }
+      >
+        <button>Copy to clipboard</button>
+      </CopyToClipboard>
       <button id="save" onClick={handleSave}>
         Save
       </button>
