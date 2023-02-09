@@ -36,6 +36,8 @@ function TextEditor(props) {
     }
   }
 
+  let actualCount;
+
   useEffect(() => {
     let textBox = text;
     console.log(countType);
@@ -46,17 +48,21 @@ function TextEditor(props) {
       for (let word of wordArr) {
         if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
       }
+      actualCount = wordCount;
       currentCount = wordCount + " /";
+
       setCurrCount(currentCount);
     }
 
     if (countType == "Character Count") {
       let currentChars = textBox.length;
       // Character Count Variable^
+      actualCount = currentChars;
+
       currentCount = currentChars + " /";
       setCurrCount(currentCount);
     }
-    if (currentCount >= Number(count) + 1) {
+    if (actualCount >= Number(count) + 1) {
       setColor("red");
     } else {
       setColor("green");
@@ -73,18 +79,21 @@ function TextEditor(props) {
       for (let word of wordArr) {
         if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
       }
+      actualCount = wordCount;
+
       currentCount = wordCount + " /";
-      console.log(currentCount);
       setCurrCount(currentCount);
     }
 
     if (countType == "Character Count") {
       let currentChars = textBox.length;
       // Character Count Variable^
+      actualCount = currentChars;
+
       currentCount = currentChars + " /";
       setCurrCount(currentCount);
     }
-    if (currentCount >= Number(count) + 1) {
+    if (actualCount >= Number(count) + 1) {
       setColor("red");
     } else {
       setColor("green");
