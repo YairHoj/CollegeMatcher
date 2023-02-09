@@ -110,8 +110,8 @@ function TextEditor(props) {
         onCopy={() =>
           NotificationManager.success(
             "Successfully copied to clipboard.",
-            "Success",
-            1500
+            "Success!",
+            3000
           )
         }
       >
