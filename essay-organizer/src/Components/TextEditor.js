@@ -37,6 +37,8 @@ function TextEditor(props) {
     }
   }
 
+  let actualCount;
+
   useEffect(() => {
     let textBox = text;
     console.log(countType);
@@ -47,17 +49,21 @@ function TextEditor(props) {
       for (let word of wordArr) {
         if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
       }
-      currentCount = wordCount;
+      actualCount = wordCount;
+      currentCount = wordCount + " /";
+
       setCurrCount(currentCount);
     }
 
     if (countType == "Character Count") {
       let currentChars = textBox.length;
       // Character Count Variable^
-      currentCount = currentChars;
+      actualCount = currentChars;
+
+      currentCount = currentChars + " /";
       setCurrCount(currentCount);
     }
-    if (currentCount >= Number(count) + 1) {
+    if (actualCount >= Number(count) + 1) {
       setColor("red");
     } else {
       setColor("0099ff");
@@ -74,17 +80,21 @@ function TextEditor(props) {
       for (let word of wordArr) {
         if (/[a-zA-Z0-9]/.test(word)) wordCount += 1;
       }
-      currentCount = wordCount;
+      actualCount = wordCount;
+
+      currentCount = wordCount + " /";
       setCurrCount(currentCount);
     }
 
     if (countType == "Character Count") {
       let currentChars = textBox.length;
       // Character Count Variable^
-      currentCount = currentChars;
+      actualCount = currentChars;
+
+      currentCount = currentChars + " /";
       setCurrCount(currentCount);
     }
-    if (currentCount >= Number(count) + 1) {
+    if (actualCount >= Number(count) + 1) {
       setColor("red");
     } else {
       setColor("#0099ff");
@@ -104,7 +114,8 @@ function TextEditor(props) {
         id={prompt}
       ></textarea>
       <p id="wordcount" style={{ color: color }}>
-        {currCount} / {count} {countType}{" "}
+        {currCount} {count} {countType}{" "}
+
       </p>
       <CopyToClipboard
         text={text}
